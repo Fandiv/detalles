@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuestros momentos 💞</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="amor.css">
+  <link rel="icon" href="images/Fandiv_favicon_32x32.png" type="image" sizes="32x32">
+</head>
+<body>
+
+  <!-- CONTENEDOR PARA CORAZONES FLOTANTES -->
+  <div id="hearts-wrapper"></div>
+
+  <script>
+    // Corazones flotantes encapsulados en contenedor para evitar scroll o desajustes
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💗';
+      document.getElementById('hearts-wrapper').appendChild(heart);
+    }
+
+    // Confeti al cargar
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.createElement("div");
+      container.style.position = "fixed";
+      container.style.top = 0;
+      container.style.left = 0;
+      container.style.width = "100vw";
+      container.style.height = "100vh";
+      container.style.pointerEvents = "none";
+      container.style.overflow = "hidden";
+      container.id = "confetiContainer";
+      document.body.appendChild(container);
+
+      for (let i = 0; i < 100; i++) {
+        const confeti = document.createElement("div");
+        confeti.classList.add("confeti");
+        confeti.style.left = Math.random() * 100 + "vw";
+        confeti.style.animationDelay = Math.random() * 1 + "s";
+        container.appendChild(confeti);
+      }
+
+      setTimeout(() => {
+        container.remove();
+      }, 3000);
+    });
+
+    function descargarMensaje() {
+      const texto = document.getElementById('mensajeAmor').value;
+      const blob = new Blob([texto], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.download = 'mensaje_para_mi_amor.txt';
+      link.href = URL.createObjectURL(blob);
+      link.click();
+    }
+  </script>
+
+  <header>15 de marzo del 2025</header>
+
+  <section class="hero">
+    <h1>FELIZ 4 AÑOS Y 3 MESES MI AMOR</h1>
+  </section>
+
+  <!-- CARTA INTERACTIVA -->
+  <section class="carta-section">
+    <div class="carta-container">
+      <img id="imagenCarta" src="images/Carta_cerrada.png" alt="Carta cerrada" />
+    </div>
+
+    <div id="contenidoCarta" class="contenido-carta">
+      <p id="textoCarta"></p>
+    </div>
+
+    <div class="boton-wrapper">
+      <button id="botonCorazon" class="corazon-boton" onclick="toggleCarta()">Abrir</button>
+    </div>
+  </section>
+
+  <script>
+    let cartaAbierta = false;
+
+    function toggleCarta() {
+      const img = document.getElementById("imagenCarta");
+      const btn = document.getElementById("botonCorazon");
+      const contenedor = document.getElementById("contenidoCarta");
+      const textoElemento = document.getElementById("textoCarta");
+
+      const texto = `Desde que llegaste a mi vida, todo tiene más sentido.
+Tus risas se volvieron mi canción favorita,
+y tus abrazos el refugio más cálido del universo.
+
+Cada día contigo es un capítulo más de esta historia hermosa que estamos escribiendo juntos,
+una historia sin final, tejida con amor, paciencia, y millones de pequeños detalles.
+
+Gracias por ser tú.
+Gracias por elegirme cada día.
+
+Te amo más allá de lo que las palabras pueden decir,
+más allá del tiempo, de la distancia y de cualquier obstáculo.
+
+Contigo, siempre.
+❤️ Tu eterno enamorado.😍❤️`;
+
+      cartaAbierta = !cartaAbierta;
+
+      if (cartaAbierta) {
+        img.src = "images/Carta_abierta.png";
+        btn.textContent = "Cerrar";
+        contenedor.style.display = "block";
+        setTimeout(() => {
+          contenedor.style.opacity = 1;
+          escribirTexto(texto, "textoCarta", 30);
+        }, 300);
+      } else {
+        img.src = "images/Carta_cerrada.png";
+        btn.textContent = "Abrir";
+        contenedor.style.opacity = 0;
+        setTimeout(() => {
+          contenedor.style.display = "none";
+          textoElemento.innerHTML = "";
+        }, 300);
+      }
+    }
+
+    function escribirTexto(texto, id, velocidad) {
+      const el = document.getElementById(id);
+      el.innerHTML = "";
+      let i = 0;
+      const intervalo = setInterval(() => {
+        if (i < texto.length) {
+          el.innerHTML += texto[i];
+          i++;
+        } else {
+          clearInterval(intervalo);
+        }
+      }, velocidad);
+    }
+  </script>
+
+  <!-- GALERÍA DE FOTOS -->
+  <section class="gallery">
+    <img src="images/Recurso_1.jpg" alt="foto 1">
+    <img src="images/Recurso_2.jpg" alt="foto 2">
+    <img src="images/Recurso_3.jpg" alt="foto 3">
+    <img src="images/Recurso_4.jpg" alt="foto 4">
+    <img src="images/Recurso_5.jpg" alt="foto 5">
+    <img src="images/Recurso_6.jpg" alt="foto 6">
+    <img src="images/Recurso_7.jpg" alt="foto 7">
+    <img src="images/Recurso_8.jpg" alt="foto 8">
+  </section>
+
+  <!-- LÍNEA DEL TIEMPO -->
+  <section class="timeline-section">
+  <h2>Nuestra Línea de Amor</h2>
+  <div class="timeline-romantic">
+    <div class="timeline-event">💑 Empezamos nuestro camino - <strong>15 Mar 2021</strong></div>
+    <div class="timeline-event">🌸 Primer aniversario - <strong>15 Mar 2022</strong></div>
+    <div class="timeline-event">🎉 Grandes aventuras - <strong>15 Mar 2023</strong></div>
+    <div class="timeline-event">🏡 Sueños en conjunto - <strong>15 Mar 2024</strong></div>
+    <div class="timeline-event">💍 Nuestro presente feliz - <strong>15 Mar 2025</strong></div>
+  </div>
+</section>
+
+  <!-- VIDEO DEDICADO -->
+  <section class="video-section" style="text-align: center; padding: 60px 20px;">
+    <h2 style="color: #ff4f81; font-size: 2em; margin-bottom: 20px;">
+      Este video es dedicado para ti ❤️
+    </h2>
+    <div style="max-width: 800px; margin: 0 auto; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-radius: 12px; overflow: hidden;">
+      <iframe width="100%" height="450"
+        src="https://www.youtube.com/embed/jn8aiHBmRYM?controls=1"
+        title="Video dedicado"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- SECCIÓN WHATSAPP -->
+  <section id="whatsapp-section" class="whatsapp-card">
+    <h2 class="whatsapp-title">💌 Escríbeme algo bonito</h2>
+
+    <textarea 
+      id="mensaje-whatsapp" 
+      class="whatsapp-textarea"
+      rows="6" 
+      placeholder="Escribe tu mensaje con amor..."></textarea>
+    
+    <button onclick="enviarMensajeWhatsApp()" class="whatsapp-button">
+      💖 Enviar por WhatsApp
+    </button>
+  </section>
+
+  <script>
+    function enviarMensajeWhatsApp() {
+      const numero = "51986298552"; // Cambia este número por el real
+      const mensaje = document.getElementById("mensaje-whatsapp").value;
+
+      if (mensaje.trim() === "") {
+        alert("Por favor escribe un mensaje antes de enviarlo 💬");
+        return;
+      }
+
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="footer">
+    © Todos los derechos reservados. <span>📖 Libro de reclamaciones (solo para mi suegra)</span>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Sorpresa 💕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="images/Fandiv_favicon_32x32.png" type="image" sizes="32x32">
+</head>
+<body>
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      heart.innerHTML = Math.random() > 0.5 ? '💖' : '💗';
+      document.body.appendChild(heart);
+    }
+
+    function descargarMensaje() {
+      const texto = document.getElementById('mensajeAmor').value;
+      const blob = new Blob([texto], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.download = 'mensaje_para_mi_amor.txt';
+      link.href = URL.createObjectURL(blob);
+      link.click();
+    }
+  </script>
+  <!-- IMÁGENES PNG FLOTANTES -->
+  <img src="images/Vector-1.png" class="floating-img img1" alt="decor 1">
+  <img src="images/Light.png" class="floating-img img2" alt="decor 2">
+  <img src="images/Vectorcora_.png" class="floating-img img3" alt="decor 3">
+  <img src="images/Vector-2.png" class="floating-img img4" alt="decor 4">
+  <img src="images/Vector-6.png" class="floating-img img5" alt="decor 5">
+  <img src="images/Vector-5.png" class="floating-img img6" alt="decor 6">
+  <img src="images/Vector-4.png" class="floating-img img7" alt="decor 7">
+  <img src="images/Vectorpastel.png" class="floating-img img8" alt="decor 8">
+
+  <div class="container">
+  <div class="image-placeholder">💌</div>
+  <h1>Bienvenida 💖</h1>
+  <form id="loginForm">
+    <input type="text" id="nombre" placeholder="Escribe tu nombre" required><br>
+    <input type="text" id="lugar" placeholder="¿Dónde nos vimos por primera vez?" required><br>
+    <input type="text" id="dia" placeholder="¿Qué número es nuestra fecha?" required><br>
+    <input type="text" id="color" placeholder="Escribe tu color favorito" required><br>
+    <button type="submit">Entrar</button>
+    <div class="error" id="error"></div>
+  </form>
+</div>
+
+<script>
+  function normalizar(texto) {
+    return texto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .trim();
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const nombre = normalizar(document.getElementById('nombre').value);
+    const lugar = normalizar(document.getElementById('lugar').value);
+    const dia = normalizar(document.getElementById('dia').value);
+    const color = normalizar(document.getElementById('color').value);
+    const error = document.getElementById('error');
+
+    const nombresValidos = ['claudia'];
+    const lugaresValidos = ['parque', 'el parque', 'en el parque'];
+    const diasValidos = ['15', 'quince', 'dia 15', 'día 15'];
+    const coloresValidos = ['rosado', 'el rosado', 'color rosado'];
+
+    const esValido =
+      nombresValidos.includes(nombre) &&
+      lugaresValidos.includes(lugar) &&
+      diasValidos.includes(dia) &&
+      coloresValidos.includes(color);
+
+    if (esValido) {
+      window.location.href = 'amor.html';
+    } else {
+      error.textContent = 'Datos incorrectos. Intenta de nuevo con amor ❤️';
+    }
+  });
+</script>
+</script>
+</body>
+</html>
